@@ -427,7 +427,7 @@
                      class="pd-billboard-hero ir">
               </div>
               <div class="pd-billboard-info">
-                <h1 class="pd-billboard-header pd-util-compact-small-18">Tienda e-commerce</h1>
+                <h1 class="pd-billboard-header pd-util-compact-small-18">Tienda e-commerce (EOM)</h1>
               </div>
             </div>
           </div>
