@@ -2,9 +2,10 @@
 require __DIR__ . '/vendor/autoload.php';
 require_once 'mp-config.php';
 
-if(empty($_POST)){
+if(empty($_POST)===false){
     $file_name = 'ipn.txt';
     $fp = fopen($file_name, "a+");
+    fwrite($fp, 'POST:'."\n");
     fwrite($fp, json_encode($_POST)."\n\n");
     fclose($fp);
 //    header("HTTP/1.1 200 OK");
@@ -38,6 +39,7 @@ if (isset($_POST["type"])) {
 
         $file_name = 'ipn.txt';
         $fp = fopen($file_name, "a+");
+        fwrite($fp, 'POST GET IPN:'."\n");
         fwrite($fp, json_encode($data)."\n\n");
         fclose($fp);
         header("HTTP/1.1 200 OK");
@@ -77,6 +79,7 @@ if (isset($_GET["topic"], $_GET["id"])) {
     if(empty($merchant_order)===false){
         $file_name = 'ipn.txt';
         $fp = fopen($file_name, "a+");
+        fwrite($fp, 'GET:'."\n");
         fwrite($fp, json_encode($merchant_order)."\n\n");
         fclose($fp);
         header("HTTP/1.1 200 OK");
