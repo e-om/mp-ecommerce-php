@@ -1,6 +1,6 @@
 <?php
 $domian = 'https://sergio-eom.herokuapp.com/';
-$domian = 'http://localhost/mp/';
+//$domian = 'http://localhost/mp/';
 $mpConfig = [
     'user-mp-app'=>[
       'platform_id'=>null,
