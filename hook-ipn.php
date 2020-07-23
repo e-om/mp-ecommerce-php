@@ -1,23 +1,25 @@
 <?php
-require_once 'mp.php';
+require __DIR__ . '/vendor/autoload.php';
+require_once 'mp-config.php';
 
-//    MercadoPago\SDK::setAccessToken($mpConfig['user-mp-app']['access_token']);
+//Init MP SDK
+MercadoPago\SDK::setAccessToken($mpConfig['user-mp-app']['access_token']);
+
 //if(count($_GET)>1 || count($_POST)>1){
-if (isset($_POST["type"])) {
-
+if (isset($_POST["type"], $_POST["id"])) {
 
     switch ($_POST["type"]) {
         case "payment":
-            $data = MercadoPago\Payment . find_by_id($_POST["id"]);
+            $data = MercadoPago\Payment::find_by_id($_POST["id"]);
             break;
         case "plan":
-            $data = MercadoPago\Plan . find_by_id($_POST["id"]);
+            $data = MercadoPago\Plan::find_by_id($_POST["id"]);
             break;
         case "subscription":
-            $data = MercadoPago\Subscription . find_by_id($_POST["id"]);
+            $data = MercadoPago\Subscription::find_by_id($_POST["id"]);
             break;
         case "invoice":
-            $data = MercadoPago\Invoice . find_by_id($_POST["id"]);
+            $data = MercadoPago\Invoice::find_by_id($_POST["id"]);
             break;
     }
 
@@ -25,12 +27,13 @@ if (isset($_POST["type"])) {
 //        $file_name = date('Y-m-d').'-ipn.txt';
         $file_name = 'ipn.txt';
         $fp = fopen($file_name, "a+");
-        fwrite($fp, json_encode($data));
+        fwrite($fp, json_encode($data)."\n");
         fclose($fp);
     }
 }
-
-if (isset($_GET["topic"])) {
+//$_GET["topic"]='merchant_order';
+//$_GET["id"]='1615978805';
+if (isset($_GET["topic"], $_GET["id"])) {
 
     $merchant_order = null;
 
@@ -47,19 +50,13 @@ if (isset($_GET["topic"])) {
 
     $paid_amount = 0;
     foreach ($merchant_order->payments as $payment) {
-        if ($payment['status'] == 'approved') {
-            $paid_amount += $payment['transaction_amount'];
+        if (isset($payment->status) && $payment->status === 'approved') {
+            $paid_amount += $payment->transaction_amount;
         }
     }
 
     if ($paid_amount >= $merchant_order->total_amount) {
-        if (count($merchant_order->shipments) > 0) { // El merchant_order tiene envíos
-            if ($merchant_order->shipments[0]->status == "ready_to_ship") {
-                print_r("Totalmente pagado Imprima la etiqueta y suelte su artículo.");
-            }
-        } else {
             print_r("Totalmente pagado Libera tu artículo.");
-        }
     } else {
         print_r("Aún no pagado. No sueltes tu artículo.");
     }
@@ -68,7 +65,7 @@ if (isset($_GET["topic"])) {
 //        $file_name = date('Y-m-d').'-ipn.txt';
         $file_name = 'ipn.txt';
         $fp = fopen($file_name, "a+");
-        fwrite($fp, json_encode($data));
+        fwrite($fp, json_encode($merchant_order)."\n");
         fclose($fp);
     }
 }
