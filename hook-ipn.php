@@ -114,4 +114,6 @@ function controlIPN($obj_json_query_ipn = null, $key=null)
 }
 
 $txt = file_get_contents('ipn.txt');
+echo'<pre>';
 echo $txt;
+echo'</pre>';
