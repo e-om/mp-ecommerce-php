@@ -2,11 +2,20 @@
 require __DIR__ . '/vendor/autoload.php';
 require_once 'mp-config.php';
 
+if(empty($_POST)){
+    $file_name = 'ipn.txt';
+    $fp = fopen($file_name, "a+");
+    fwrite($fp, json_encode($_POST)."\n\n");
+    fclose($fp);
+//    header("HTTP/1.1 200 OK");
+//    exit(0);
+}
+
 //Init MP SDK
 MercadoPago\SDK::setAccessToken($mpConfig['user-mp-app']['access_token']);
 //$_POST["type"]='payment';
 //$_POST["id"]='1615978805';
-if (isset($_POST["type"], $_POST["id"])) {
+if (isset($_POST["type"])) {
 
 //    switch ($_POST["type"]) {
 //        case "payment":
