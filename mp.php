@@ -6,9 +6,6 @@ require_once 'mp-config.php';
 MercadoPago\SDK::setAccessToken($mpConfig['user-mp-app']['access_token']);
 MercadoPago\SDK::setPublicKey($mpConfig['user-mp-app']['public_key']);
 MercadoPago\SDK::setIntegratorId($mpConfig['user-mp-app']['integrator_id']);
-//MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
-//MercadoPago\SDK::setPublicKey('APP_USR-7eb0138a-189f-4bec-87d1-c0504ead5626');
-//MercadoPago\SDK::setIntegratorId('dev_24c65fb163bf11ea96500242ac130004');
 
 // MP Config
 $preference = new MercadoPago\Preference();
@@ -24,8 +21,8 @@ if ($userLogin = true) {
     $payer = new MercadoPago\Payer();
     $payer->name = 'Lalo';
     $payer->surname = 'Landa';
-//    $payer->first_name = 'Lalo';
-//    $payer->last_name = 'Landa';
+    $payer->first_name = 'Lalo';
+    $payer->last_name = 'Landa';
     $payer->email = 'test_user_63274575@testuser.com';
     $payer->date_created = '2020-07-23T12:58:41.425-04:00';
     $payer->phone = array(
@@ -52,12 +49,12 @@ if (isset($_POST['price'], $_POST['unit'], $_POST['title'], $_POST['img'])) {
     $item = new MercadoPago\Item();
 
     $item->id = '1234';
-    $item->currency_id = 'ARS';
-    $item->picture_url = $domian.$_POST['img'];
+//    $item->currency_id = 'ARS';
     $item->title = $_POST['title'];
-    $item->description = 'Dispositivo movil de Tienda e-commerce';
-    $item->category_id = 'art';
-    $item->quantity = $_POST['unit'];
+    $item->description = 'Dispositivo móvil de Tienda e-commerce';
+    $item->picture_url = $domian.$_POST['img'];
+//    $item->category_id = 'art';
+    $item->quantity = 1;
     $item->unit_price = $_POST['price'];
 
     $preference->items = array($item);

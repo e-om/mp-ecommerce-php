@@ -1,6 +1,6 @@
 <?php
 $domian = 'https://sergio-eom.herokuapp.com/';
-//$domian = 'http://localhost/mp/';
+$domian = 'http://localhost/mp/';
 $mpConfig = [
     'user-mp-app'=>[
       'platform_id'=>null,
@@ -15,7 +15,8 @@ $mpConfig = [
         'notification_url' => $domian . 'hook-ipn.php',
 //        'notification_url' => $domian . 'hook-ipn.php?source_news=webhooks', // solo webhook sin IPN
 //        'notification_url' => $domian . 'hook-ipn.php?source_news=ipn', // solo webhook sin IPN
-        'auto_return' => 'all', // approved
+//        'auto_return' => 'all', // approved
+        'auto_return' => 'approved',
         'back_urls' => [
             'success' => $domian . 'pagos-mp.php?estado-mp=success',
             'failure' => $domian . 'pagos-mp.php?estado-mp=failure',
@@ -30,7 +31,7 @@ $mpConfig = [
                 ['id' => 'atm']
             ],
         ],
-        'expires' => false,
+//        'expires' => false,
 //        'expiration_date_from' => null,
 //        'expiration_date_to' => null,
     ],

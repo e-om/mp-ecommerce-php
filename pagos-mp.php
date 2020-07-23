@@ -1,8 +1,14 @@
 <?php
-echo '<pre>';
+echo "<pre>DEBUG: \n";
 print_r($_GET);
-echo '</pre>';
 ?>
+
+<?php if(isset($_GET['collection_id']) && empty($_GET['collection_id'])===false){
+    $d = @file_get_contents('https://api.mercadopago.com/v1/payments/' . $_GET['collection_id'] . '?access_token=APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+    echo $d;
+}?>
+
+<?php echo '</pre>'; ?>
 
 <?php switch ($_GET['estado-mp']) {
     case 'failure':
