@@ -4,8 +4,8 @@ require_once 'mp-config.php';
 
 //Init MP SDK
 MercadoPago\SDK::setAccessToken($mpConfig['user-mp-app']['access_token']);
-
-//if(count($_GET)>1 || count($_POST)>1){
+//$_POST["type"]='payment';
+//$_POST["id"]='1615978805';
 if (isset($_POST["type"], $_POST["id"])) {
 
     switch ($_POST["type"]) {
@@ -29,6 +29,8 @@ if (isset($_POST["type"], $_POST["id"])) {
         $fp = fopen($file_name, "a+");
         fwrite($fp, json_encode($data)."\n");
         fclose($fp);
+        header("HTTP/1.1 200 OK");
+        exit(0);
     }
 }
 //$_GET["topic"]='merchant_order';
@@ -67,6 +69,8 @@ if (isset($_GET["topic"], $_GET["id"])) {
         $fp = fopen($file_name, "a+");
         fwrite($fp, json_encode($merchant_order)."\n");
         fclose($fp);
+        header("HTTP/1.1 200 OK");
+        exit(0);
     }
 }
 
