@@ -972,28 +972,30 @@
       </div>
     </div>
   </div>
-  <div style="text-align: center; padding: 20px">
-    TEST POST LOG IPN o WebHook
-    <form action="hook-ipn.php" method="post">
-      <input type="hidden" name="test-ipn-my-post-local" value="Hola IPN o WebHook log POST">
-      <input type="hidden" name="img" value="assets/003.jpg">
-      <input type="hidden" name="title" value="Sony Xperia XZ2">
-      <input type="hidden" name="price" value="10000">
-      <input type="hidden" name="unit" value="1">
-      <button type="submit" class="mercadopago-button" formmethod="post">Test Log POST IPN o WebHook</button>
-    </form>
-  </div>
-  <div style="text-align: center; padding: 20px">
-    TEST GET LOG IPN o WebHook
-    <form action="hook-ipn.php" method="get">
-      <input type="hidden" name="test-ipn-my-post-local" value="Hola IPN o WebHook log POST">
-      <input type="hidden" name="img" value="assets/003.jpg">
-      <input type="hidden" name="title" value="Sony Xperia XZ2">
-      <input type="hidden" name="price" value="10000">
-      <input type="hidden" name="unit" value="1">
-      <button type="submit" class="mercadopago-button" formmethod="get">Test GET Log IPN o WebHook</button>
-    </form>
-  </div>
+
+<!--  <div style="text-align: center; padding: 20px">-->
+<!--    TEST POST LOG IPN o WebHook-->
+<!--    <form action="hook-ipn.php" method="post">-->
+<!--      <input type="hidden" name="test-ipn-my-post-local" value="Hola IPN o WebHook log POST">-->
+<!--      <input type="hidden" name="img" value="assets/003.jpg">-->
+<!--      <input type="hidden" name="title" value="Sony Xperia XZ2">-->
+<!--      <input type="hidden" name="price" value="10000">-->
+<!--      <input type="hidden" name="unit" value="1">-->
+<!--      <button type="submit" class="mercadopago-button" formmethod="post">Test Log POST IPN o WebHook</button>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--  <div style="text-align: center; padding: 20px">-->
+<!--    TEST GET LOG IPN o WebHook-->
+<!--    <form action="hook-ipn.php" method="get">-->
+<!--      <input type="hidden" name="test-ipn-my-post-local" value="Hola IPN o WebHook log POST">-->
+<!--      <input type="hidden" name="img" value="assets/003.jpg">-->
+<!--      <input type="hidden" name="title" value="Sony Xperia XZ2">-->
+<!--      <input type="hidden" name="price" value="10000">-->
+<!--      <input type="hidden" name="unit" value="1">-->
+<!--      <button type="submit" class="mercadopago-button" formmethod="get">Test GET Log IPN o WebHook</button>-->
+<!--    </form>-->
+<!--  </div>-->
+
   <div role="alert" class="as-loader-text ally" aria-live="assertive"></div>
   <div class="as-footnotes ">
     <div class="as-footnotes-content">

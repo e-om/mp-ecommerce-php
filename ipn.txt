@@ -1,1 +1,16 @@
 Inicio del log IPN o WebHook
+POST --------------------------------------------
+{"test-ipn-my-post-local":"Hola IPN o WebHook log POST","img":"assets\/003.jpg","title":"Sony Xperia XZ2","price":"10000","unit":"1"}
+test-ipn-my-post-local=Hola+IPN+o+WebHook+log+POST&img=assets%2F003.jpg&title=Sony+Xperia+XZ2&price=10000&unit=1
+GET --------------------------------------------
+{"id":"1617189854","topic":"merchant_order"}
+{"resource":"https://api.mercadolibre.com/merchant_orders/1617189854","topic":"merchant_order"}
+GET --------------------------------------------
+{"data_id":"7724257992","type":"payment"}
+{"action":"payment.created","api_version":"v1","data":{"id":"7724257992"},"date_created":"2020-07-23T18:35:20Z","id":6190403966,"live_mode":true,"type":"payment","user_id":"469485398"}
+GET --------------------------------------------
+{"id":"7724257992","topic":"payment"}
+{"resource":"https://api.mercadolibre.com/collections/notifications/7724257992","topic":"payment"}
+GET --------------------------------------------
+{"id":"1617189854","topic":"merchant_order"}
+{"resource":"https://api.mercadolibre.com/merchant_orders/1617189854","topic":"merchant_order"}
