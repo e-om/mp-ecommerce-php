@@ -5,7 +5,16 @@ require_once 'mp-config.php';
 if(empty($_POST)===false){
     $file_name = 'ipn.txt';
     $fp = fopen($file_name, "a+");
-    fwrite($fp, 'POST:'."\n");
+    fwrite($fp, 'POST FULL:'."\n");
+    fwrite($fp, json_encode($_POST)."\n\n");
+    fclose($fp);
+//    header("HTTP/1.1 200 OK");
+//    exit(0);
+}
+if(empty($_GET)===false){
+    $file_name = 'ipn.txt';
+    $fp = fopen($file_name, "a+");
+    fwrite($fp, 'GET FULL:'."\n");
     fwrite($fp, json_encode($_POST)."\n\n");
     fclose($fp);
 //    header("HTTP/1.1 200 OK");
