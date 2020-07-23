@@ -1,21 +1,54 @@
 <?php
+if (empty($_POST) === false || empty($_GET) === false) {
+    $json = file_get_contents('php://input');
+    $fp = fopen("ipn.txt", "a+");
+}
+
+if (empty($_POST) === false) {
+    fwrite($fp, "POST -------------------------------------------- \r\n");
+    fwrite($fp, json_encode($_POST)."\r\n");
+} else if (empty($_GET) === false) {
+    fwrite($fp, "GET -------------------------------------------- \r\n");
+    fwrite($fp, json_encode($_GET)."\r\n");
+}
+// hay datos..?
+if (empty($_POST) === false || empty($_GET) === false) {
+    fwrite($fp, "" . $json . " \r\n");
+    fclose($fp);
+    header("HTTP/1.1 200 OK");
+}
+
+if (empty($_POST) && empty($_GET)) {
+    $txt = file_get_contents('ipn.txt');
+    echo '<pre>';
+    echo $txt;
+    echo '</pre>';
+}
+
+exit(0);
+
+
+
+/*
+
+
 require __DIR__ . '/vendor/autoload.php';
 require_once 'mp-config.php';
 
-if(empty($_POST)===false){
+if (empty($_POST) === false) {
     $file_name = 'ipn.txt';
     $fp = fopen($file_name, "a+");
-    fwrite($fp, 'POST FULL:'."\n");
-    fwrite($fp, json_encode($_POST)."\n\n");
+    fwrite($fp, 'POST FULL:' . "\n");
+    fwrite($fp, json_encode($_POST) . "\n\n");
     fclose($fp);
 //    header("HTTP/1.1 200 OK");
 //    exit(0);
 }
-if(empty($_GET)===false){
+if (empty($_GET) === false) {
     $file_name = 'ipn.txt';
     $fp = fopen($file_name, "a+");
-    fwrite($fp, 'GET FULL:'."\n");
-    fwrite($fp, json_encode($_POST)."\n\n");
+    fwrite($fp, 'GET FULL:' . "\n");
+    fwrite($fp, json_encode($_POST) . "\n\n");
     fclose($fp);
 //    header("HTTP/1.1 200 OK");
 //    exit(0);
@@ -48,8 +81,8 @@ if (isset($_POST["type"])) {
 
         $file_name = 'ipn.txt';
         $fp = fopen($file_name, "a+");
-        fwrite($fp, 'POST GET IPN:'."\n");
-        fwrite($fp, json_encode($data)."\n\n");
+        fwrite($fp, 'POST GET IPN:' . "\n");
+        fwrite($fp, json_encode($data) . "\n\n");
         fclose($fp);
         header("HTTP/1.1 200 OK");
         exit(0);
@@ -80,23 +113,23 @@ if (isset($_GET["topic"], $_GET["id"])) {
     }
 
     if ($paid_amount >= $merchant_order->total_amount) {
-            print_r("Totalmente pagado Libera tu artículo.");
+        print_r("Totalmente pagado Libera tu artículo.");
     } else {
         print_r("Aún no pagado. No sueltes tu artículo.");
     }
 
-    if(empty($merchant_order)===false){
+    if (empty($merchant_order) === false) {
         $file_name = 'ipn.txt';
         $fp = fopen($file_name, "a+");
-        fwrite($fp, 'GET:'."\n");
-        fwrite($fp, json_encode($merchant_order)."\n\n");
+        fwrite($fp, 'GET:' . "\n");
+        fwrite($fp, json_encode($merchant_order) . "\n\n");
         fclose($fp);
         header("HTTP/1.1 200 OK");
         exit(0);
     }
 }
 
-function controlIPN($obj_json_query_ipn = null, $key=null)
+function controlIPN($obj_json_query_ipn = null, $key = null)
 {
     if (empty($obj_json_query_ipn)) {
         return false;
@@ -135,6 +168,7 @@ function controlIPN($obj_json_query_ipn = null, $key=null)
 }
 
 $txt = file_get_contents('ipn.txt');
-echo'<pre>';
+echo '<pre>';
 echo $txt;
-echo'</pre>';
+echo '</pre>';
+*/
